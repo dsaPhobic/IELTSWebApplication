@@ -1,0 +1,23 @@
+body {
+    font-family: Arial;
+    margin: 20px;
+}
+.section-box {
+    border: 1px solid #aaa;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+.question-box {
+    border: 1px dashed #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border-radius: 5px;
+}
+input[type="text"], textarea, select {
+    width: 95%;
+    margin-bottom: 5px;
+    padding: 5px;
+}

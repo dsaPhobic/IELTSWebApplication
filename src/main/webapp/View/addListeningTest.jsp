@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Add IELTS Listening Test</title>
-    <link rel="stylesheet" href="css/style.css" />
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AddTest.css" />
     <script src="${pageContext.request.contextPath}/js/form-listening.js"></script>
 </head>
 <body>
     <h2>➕ Add IELTS Listening Test (Google Form style)</h2>
-    <form action="${pageContext.request.contextPath}/AddExamServlet" method="post" enctype="multipart/form-data">
+    <form action="${pageContext.request.contextPath}/AddListeningTestServlet" method="post" enctype="multipart/form-data">
         <label>Exam Title:</label><br/>
         <input type="text" name="examTitle" required/><br/>
 

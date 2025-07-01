@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Add IELTS Reading Test</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/AddTest.css" />
     <script src="${pageContext.request.contextPath}/js/form-script.js"></script>
 </head>
 <body>

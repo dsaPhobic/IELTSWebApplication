@@ -43,19 +43,31 @@ public class AddListeningTestController extends HttpServlet {
         String audioUrl = "";
         if (audioPart != null && audioPart.getSize() > 0) {
             String fileName = System.currentTimeMillis() + "_" + audioPart.getSubmittedFileName();
-            String uploadPath = getServletContext().getRealPath("/uploads/audio");
+            String uploadPath = "D:/IELTS_Data/Listening/audio";
             File dir = new File(uploadPath);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
             audioPart.write(uploadPath + File.separator + fileName);
-            audioUrl = "uploads/audio/" + fileName;
+            audioUrl = fileName;
         }
 
         // ✅ Tạo Exam
         Exam exam = new Exam();
         exam.setTitle(examTitle);
-        exam.setType("LISTENING");
+        int sectionCount = 0;
+        for (int s = 1;; s++) {
+            String sectionTitle = request.getParameter("sectionTitle" + s);
+            String sectionContent = request.getParameter("sectionContent" + s);
+            if (sectionTitle == null && sectionContent == null) {
+                break;
+            }
+            sectionCount++;
+            // (Xử lý thêm passage...)
+        }
+
+        exam.setType(sectionCount == 1 ? "LISTENING_SINGLE" : "LISTENING_FULL");
+
         exam.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         int examId = examDAO.insertExam(exam);
 
@@ -89,13 +101,14 @@ public class AddListeningTestController extends HttpServlet {
                 if (imagePart != null && imagePart.getSize() > 0) {
                     String rawName = imagePart.getSubmittedFileName();
                     String fileName = "listen_s" + s + "_q" + q + "_" + System.currentTimeMillis() + "_" + rawName.replaceAll("\\s+", "_");
-                    String uploadPath = getServletContext().getRealPath("/uploads");
+                    String uploadPath = "D:/IELTS_Data/Listening/image";
+
                     File uploadDir = new File(uploadPath);
                     if (!uploadDir.exists()) {
                         uploadDir.mkdirs();
                     }
                     imagePart.write(uploadPath + File.separator + fileName);
-                    imageUrl = "uploads/" + fileName;
+                    imageUrl = fileName;
                 }
 
                 int questionId = -1;
@@ -143,6 +156,6 @@ public class AddListeningTestController extends HttpServlet {
             }
         }
 
-        response.sendRedirect("addSuccess.jsp");
+        response.sendRedirect(request.getContextPath() + "/View/addSuccess.jsp");
     }
 }
